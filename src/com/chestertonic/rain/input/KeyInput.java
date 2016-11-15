@@ -7,16 +7,17 @@ import java.awt.event.KeyListener;
  * Created by slinkee on 11/1/16.
  */
 public class KeyInput implements KeyListener {
+
     private static final int NUM_KEYS = 256;
     private static final boolean[] keys = new boolean[NUM_KEYS];
     private static final boolean[] lastKeys = new boolean[NUM_KEYS];
-
+    // can either use methods below or check public booleans for key presses. public booleans may be better
+    // for setting custom controls in options menu
     public boolean up, down, left, right;
 
     public void update() {
-        for (int i = 0; i < NUM_KEYS; i++) {
-            lastKeys[i] = keys[i];
-        }
+        System.arraycopy(keys, 0, lastKeys, 0, NUM_KEYS);
+
         up = keys[KeyEvent.VK_UP] || keys[KeyEvent.VK_W];
         down = keys[KeyEvent.VK_DOWN] || keys[KeyEvent.VK_S];
         left = keys[KeyEvent.VK_LEFT] || keys[KeyEvent.VK_A];

@@ -1,13 +1,63 @@
 package com.chestertonic.rain.graphics;
 
+
 /**
+ * The Sprite class holds the sub-image of a {@link SpriteSheet}. This is a basic class to be used to represent any image
+ * to be rendered in the game. Currently only supports images of equal x/y dimensions.
+ * <p>
  * Created by slinkee on 11/2/16.
  */
 public class Sprite {
-    public final int SIZE;
-    private int x, y;
-    public int[] pixels;
+
+    /**
+     * Width of {@code Sprite}.
+     */
+    private final int WIDTH;
+
+    /**
+     * Height of {@code Sprite}.
+     */
+    private final int HEIGHT;
+
+    /**
+     * The x coordinate of {@code Sprite} in {@code sheet}.
+     */
+    private int x;
+
+    /**
+     * The y coordinate of {@code Sprite} int {@code sheet}.
+     */
+    private int y;
+
+    /**
+     * Determines the transformation of the rendered {@code Sprite}.
+     * <p>
+     * 0 no transformation
+     * 1 render {@code Sprite} with pixels flipped over Y axis
+     * 2 render {@code Sprite} with pixels flipped over X axis
+     * 3 render {@code Sprite} with pixels flipped over X and Y axis
+     */
+    private int flip;
+
+    /**
+     * Determines if {@code Sprite} is fixed on {@link Screen}.
+     * <p>
+     * true {@code Sprite} is fixed.
+     * false {@code Sprite} is not fixed.
+     */
+    private boolean fixed;
+
+    /**
+     * Array of {@code pixels} representing the {@code Sprite} image.
+     */
+    private int[] pixels;
+
+    /**
+     * The SpriteSheet in which the sprite belongs to.
+     */
     private SpriteSheet sheet;
+
+    // todo create a SpriteSheet loader class to manage SpriteSheet resources.
 
     // Main Sprite Sheet
     public static Sprite grass = new Sprite(16, 0, 0, SpriteSheet.tiles);
@@ -56,33 +106,184 @@ public class Sprite {
     public static Sprite player_side1 = new Sprite(32, 1, 6, SpriteSheet.tiles);
     public static Sprite player_side2 = new Sprite(32, 1, 7, SpriteSheet.tiles);
 
+    // Projectiles
+    public static Sprite projectile_wizard = new Sprite(16, 0, 0, SpriteSheet.projectile_wizard);
 
+    /**
+     * Creates a new instance of {@code Sprite} with equal x/y dimensions.
+     *
+     * @param size  the x/y dimensions of the {@code Sprite}.
+     * @param x     the x coordinate of the {@code Sprite} in {@code sheet}.
+     * @param y     the y coordinate of the {@code Sprite} in {@code sheet}.
+     * @param sheet the {@link SpriteSheet} that owns image.
+     */
     public Sprite(int size, int x, int y, SpriteSheet sheet) {
-        SIZE = size;
-        pixels = new int[SIZE * SIZE];
-        this.x = x * size;
-        this.y = y * size;
+        WIDTH = size;
+        HEIGHT = size;
+        pixels = new int[WIDTH * HEIGHT];
+        this.x = x * WIDTH;
+        this.y = y * HEIGHT;
         this.sheet = sheet;
+        flip = 0;
         load();
     }
 
+    /**
+     * Creates a new instance of {@code Sprite}.
+     *
+     * @param width  the width of the {@code Sprite}.
+     * @param height the height of the {@code Sprite}.
+     * @param x     the x coordinate of the {@code Sprite} in {@code sheet}.
+     * @param y     the y coordinate of the {@code Sprite} in {@code sheet}.
+     * @param sheet the {@link SpriteSheet} that owns image.
+     */
+    public Sprite(int width, int height, int x, int y, SpriteSheet sheet) {
+        WIDTH = width;
+        HEIGHT = height;
+        pixels = new int[WIDTH * HEIGHT];
+        this.x = x * WIDTH;
+        this.y = y * HEIGHT;
+        this.sheet = sheet;
+        flip = 0;
+        fixed = false;
+        load();
+    }
+
+    /**
+     * Creates a new instance of {@code Sprite} of a single color with equal x/y dimensions.
+     *
+     * @param size  the x/y dimensions of the {@code Sprite}.
+     * @param color the hex color value of the {@code Sprite}.
+     */
     public Sprite(int size, int color) {
-        SIZE = size;
-        pixels = new int[SIZE * SIZE];
+        WIDTH = size;
+        HEIGHT = size;
+        pixels = new int[WIDTH * HEIGHT];
+        flip = 0;
+        fixed = false;
         setColor(color);
     }
 
-    private void setColor(int color) {
+    /**
+     * Creates a new instance of {@code Sprite} of a single color.
+     *
+     * @param width  the width dimensions of the {@code Sprite}.
+     * @param height the height dimensions of the {@code Sprite}.
+     * @param color the hex color value of the {@code Sprite}.
+     */
+    public Sprite(int width, int height, int color) {
+        WIDTH = width;
+        HEIGHT = width;
+        pixels = new int[WIDTH * HEIGHT];
+        flip = 0;
+        fixed = false;
+        setColor(color);
+    }
+
+    /**
+     * Sets color of entire {@code Sprite}
+     *
+     * @param color the hex color value
+     */
+    public void setColor(int color) {
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = color;
         }
     }
 
+    /**
+     * Sets color of pixel.
+     *
+     * @param x     the x coordinate of the pixel
+     * @param y     the y coordinate of the pixel
+     * @param color the hex color value
+     */
+    public void setColorAt(int x, int y, int color) {
+        pixels[x + y * WIDTH] = color;
+    }
+
+    /**
+     * Gets color of pixel.
+     *
+     * @param x the x coordinate of the pixel
+     * @param y the y coordinate of the pixel
+     * @return hex color value
+     */
+    public int getColorAt(int x, int y) {
+        return pixels[x + y * WIDTH];
+    }
+
+    /**
+     * Loads image from {@code sheet} into {@code pixels}.
+     */
     private void load() {
-        for (int y = 0; y < SIZE; y++) {
-            for (int x = 0; x < SIZE; x++) {
-                pixels[x + y * SIZE] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.SIZE];
+        for (int y = 0; y < height(); y++) {
+            for (int x = 0; x < width(); x++) {
+                pixels()[x + y * width()] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.SIZE];
             }
         }
+    }
+
+    /**
+     * Returns the {@code WIDTH} of the {@code Sprite}.
+     *
+     * @return the width of {@code Sprite}
+     */
+    public int width() {
+        return WIDTH;
+    }
+
+    /**
+     * Returns the {@code HEIGHT} of the {@code Sprite}.
+     *
+     * @return the height of {@code Sprite}
+     */
+    public int height() {
+        return HEIGHT;
+    }
+
+    /**
+     * Returns the pixels array of the {@code Sprite}.
+     *
+     * @return the pixels array
+     */
+    public int[] pixels() {
+        return pixels;
+    }
+
+    /**
+     * Sets value of {@code flip} variable to determine transformation of {@code Sprite}.
+     *
+     * @param flip integer value
+     */
+    public void setFlip(int flip) {
+        this.flip = flip;
+    }
+
+    /**
+     * Returns value of {@code flip} variable to determine transformation of {@code Sprite}.
+     *
+     * @return the value of flip
+     */
+    public int flip() {
+        return flip;
+    }
+
+    /**
+     * Sets value of {@code fixed} variable to determine position of {@code Sprite}.
+     *
+     * @param fixed integer value
+     */
+    public void setFixed(boolean fixed) {
+        this.fixed = fixed;
+    }
+
+    /**
+     * Returns value of {@code fixed} variable to determine position of {@code Sprite}.
+     *
+     * @return the value of fixed
+     */
+    public boolean isFixed() {
+        return fixed;
     }
 }

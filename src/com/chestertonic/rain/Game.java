@@ -3,17 +3,17 @@ package com.chestertonic.rain;
 import com.chestertonic.rain.entity.mob.Player;
 import com.chestertonic.rain.graphics.Screen;
 import com.chestertonic.rain.input.KeyInput;
+import com.chestertonic.rain.input.MouseInput;
 import com.chestertonic.rain.level.Level;
+import com.chestertonic.rain.level.PointTile;
 import com.chestertonic.rain.level.SpawnLevel;
 
-import java.awt.Canvas;
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 /**
  * Created by slinkee on 10/31/16.
@@ -22,7 +22,7 @@ public class Game extends Canvas implements Runnable {
 
 
     private static int width = 300;
-    private static int height = (int)((double)width / 16 * 9);  // aspect ratio 16:9
+    private static int height = (int) ((double) width / 16 * 9);  // aspect ratio 16:9
     private static int scale = 3;    // scale window to 3 times rendered width/height
     private String TITLE = "Rain";
 
@@ -30,9 +30,9 @@ public class Game extends Canvas implements Runnable {
     private Screen screen;
     private JFrame frame;
     private KeyInput keyInput;
+    private MouseInput mouseInput;
     private Level level;
-    private Player player;
-    private BufferedImage image; // rendered image to disply on screen
+    private BufferedImage image; // rendered image to display on screen
     private int[] pixels;        // manipulate pixel on buffered image
 
     private boolean running = false;
@@ -45,11 +45,17 @@ public class Game extends Canvas implements Runnable {
         frame = new JFrame();
         keyInput = new KeyInput();
         addKeyListener(keyInput);
+        mouseInput = new MouseInput();
+        addMouseListener(mouseInput);
+        addMouseMotionListener(mouseInput);
+
         image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
-        level = Level.spawn;
-        player = new Player(keyInput);
+        level = new SpawnLevel("/levels/spawn.png");
+        PointTile playerSpawn = new PointTile(24, 51);
+        level.setPlayer(new Player(playerSpawn.getX(), playerSpawn.getY(), keyInput));
+
     }
 
     private synchronized void start() {
@@ -101,11 +107,10 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
-
-
     private void update() {
         keyInput.update();
-        player.update();
+        mouseInput.update();
+        level.update(getWidth(), getHeight());
     }
 
     private void render() {
@@ -119,35 +124,23 @@ public class Game extends Canvas implements Runnable {
             }
         }
 
-        /*System.out.println("Page flipping: " + bs.getCapabilities().isPageFlipping());
-        System.out.println("Multiple Buffers: " + bs.getCapabilities().isMultiBufferAvailable());
-        System.out.println("FSEM Required: " + bs.getCapabilities().isFullScreenRequired());
-        System.out.println("Backbuffer accelerated: " + bs.getCapabilities().getBackBufferCapabilities().isAccelerated());
-        System.out.println("Frontbuffer accelerated: " + bs.getCapabilities().getFrontBufferCapabilities().isAccelerated());
-*/
         screen.clear();  // clears previous screen image
 
-        int xScroll = player.x - screen.width / 2;
-        int yScroll = player.y - screen.height / 2;
-        level.render(xScroll, yScroll, screen);
-        player.render(screen);
+        level.render(screen);
 
-        //System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
-        for (int i = 0; i < pixels.length; i++) {
+        System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
+        /*for (int i = 0; i < pixels.length; i++) {
             pixels[i] = screen.pixels[i];
-        }
+        }*/
 
         Graphics g = bs.getDrawGraphics();  // get drawing context for current buffer
 
 
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-        //g.setColor(Color.WHITE);
-        //g.setFont(new Font("Verdana", 0, 25));
-        //g.drawString("X: " + player.x + ", Y: " + player.y, 475 , 425);
-
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Verdana", 0, 25));
         g.dispose(); // clear drawing context
         bs.show();   // display buffer
-        //Toolkit.getDefaultToolkit().sync();
     }
 
 
@@ -157,7 +150,7 @@ public class Game extends Canvas implements Runnable {
         game.frame.setTitle(game.TITLE);
         game.frame.add(game);                                       // add game (canvas) to frame
         game.frame.pack();                                          // set window frame to size of canvas
-        game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // close app with close button
+        game.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  // close app with close button
         game.frame.setLocationRelativeTo(null);                     // center window on screen
         game.frame.setVisible(true);                                // make frame visible
 

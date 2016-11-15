@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
+ * The {@code SpriteSheet} class loads an image from disk to
  * Created by slinkee on 11/2/16.
  */
 public class SpriteSheet {
@@ -16,6 +17,8 @@ public class SpriteSheet {
 
     public static SpriteSheet tiles = new SpriteSheet("/textures/sheets/spritesheet.png", 256);
     public static SpriteSheet spawn_tiles = new SpriteSheet("/textures/sheets/spawn_level.png", 48);
+    public static SpriteSheet projectile_wizard =
+            new SpriteSheet("/textures/sheets/projectiles/wizard.png", 48);
 
     public SpriteSheet(String path, int size) {
         this.path = path;

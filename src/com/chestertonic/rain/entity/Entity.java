@@ -3,6 +3,7 @@ package com.chestertonic.rain.entity;
 import com.chestertonic.rain.graphics.Screen;
 import com.chestertonic.rain.level.Level;
 
+
 import java.util.Random;
 
 /**
@@ -11,20 +12,22 @@ import java.util.Random;
 public abstract class Entity {
 
     public int x, y;
-    private boolean removed = false;    // removed from level?
     protected Level level;
+    private boolean removed = false;    // removed from level?
     protected final Random random = new Random();
 
-    public void update() {
 
+    public void update() {
     }
 
     public void render(Screen screen) {
-
     }
 
-    public void remove() {
-        // remove entity
+    public void setLevel(Level level) {
+        this.level = level;
+    }
+
+    protected void remove() {
         removed = true;
     }
 

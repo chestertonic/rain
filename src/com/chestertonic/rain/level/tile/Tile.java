@@ -7,9 +7,12 @@ import com.chestertonic.rain.graphics.Sprite;
  * Created by slinkee on 11/4/16.
  */
 public class Tile {
+
     public int x, y;
     public Sprite sprite;
     private boolean solid;
+
+    // todo create a Tile loader (or combined resource loader for Sprites as well) to handle Tile resources
 
     // Main Sprite Sheet Tiles
     public static Tile grass = new Tile(Sprite.grass, false);
@@ -53,15 +56,13 @@ public class Tile {
     public static final int col_spawn_floor2 = 0xFF888844;
 
 
-
-
     public Tile(Sprite sprite, boolean solid) {
         this.sprite = sprite;
         this.solid = solid;
     }
 
     public void render(int x, int y, Screen screen) {
-        screen.render(x * 16, y * 16, this.sprite, 0);
+        screen.render(x * 16, y * 16, this.sprite);
     }
 
     public boolean isSolid() {
