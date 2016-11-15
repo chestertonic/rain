@@ -2,80 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8feb8349-9664-48a3-b400-8a68923d036d" name="Default" comment="Set groundwork for Particle class">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/chestertonic/rain/entity/projectile/Projectile.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/chestertonic/rain/entity/projectile/WizardProjectile.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/chestertonic/rain/input/MouseInput.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/chestertonic/rain/level/PointTile.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/com/chestertonic/rain/Game.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/com/chestertonic/rain/entity/Entity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/com/chestertonic/rain/entity/mob/Mob.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/com/chestertonic/rain/entity/mob/Player.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/com/chestertonic/rain/graphics/Screen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/com/chestertonic/rain/graphics/Sprite.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/com/chestertonic/rain/graphics/SpriteSheet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/com/chestertonic/rain/input/KeyInput.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/com/chestertonic/rain/level/Level.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/com/chestertonic/rain/level/RandomLevel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/com/chestertonic/rain/level/SpawnLevel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/com/chestertonic/rain/level/tile/GrassTile.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/com/chestertonic/rain/level/tile/Tile.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/com/chestertonic/rain/level/tile/VoidTile.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/levels/map1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/levels/spawn.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/resources/levels/map1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/resources/levels/spawn.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/resources/textures/dev/map1.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/resources/textures/dev/spritesheet.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/resources/textures/dev/spritesheet1.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/resources/textures/dev/spritesheet2.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/resources/textures/dev/spritesheet3.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/resources/textures/sheets/level_tiles.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/resources/textures/sheets/level_tiles.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/resources/textures/sheets/spawn.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/resources/textures/sheets/spawn_level.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/resources/textures/sheets/spawn_level.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/resources/textures/sheets/spritesheet.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/resources/textures/sheets/spritesheet1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/resources/textures/spawn_level.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/resources/textures/sprites/King_Cherno.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/textures/dev/map1.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/textures/dev/spritesheet.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/textures/dev/spritesheet1.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/textures/dev/spritesheet2.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/textures/dev/spritesheet3.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/textures/sheets/level_tiles.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/textures/sheets/level_tiles.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/textures/sheets/spawn.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/textures/sheets/spawn_level.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/textures/sheets/spawn_level.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/textures/sheets/spritesheet.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/textures/sheets/spritesheet1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/textures/spawn_level.xcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/rain/textures/sprites/King_Cherno.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/chestertonic/rain/level/tile/GrassTile.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/chestertonic/rain/level/tile/VoidTile.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chestertonic/rain/Game.java" afterPath="$PROJECT_DIR$/src/com/chestertonic/rain/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chestertonic/rain/entity/Entity.java" afterPath="$PROJECT_DIR$/src/com/chestertonic/rain/entity/Entity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chestertonic/rain/entity/mob/Mob.java" afterPath="$PROJECT_DIR$/src/com/chestertonic/rain/entity/mob/Mob.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chestertonic/rain/entity/mob/Player.java" afterPath="$PROJECT_DIR$/src/com/chestertonic/rain/entity/mob/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chestertonic/rain/graphics/Sprite.java" afterPath="$PROJECT_DIR$/src/com/chestertonic/rain/graphics/Sprite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chestertonic/rain/graphics/SpriteSheet.java" afterPath="$PROJECT_DIR$/src/com/chestertonic/rain/graphics/SpriteSheet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chestertonic/rain/input/KeyInput.java" afterPath="$PROJECT_DIR$/src/com/chestertonic/rain/input/KeyInput.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chestertonic/rain/level/Level.java" afterPath="$PROJECT_DIR$/src/com/chestertonic/rain/level/Level.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chestertonic/rain/level/RandomLevel.java" afterPath="$PROJECT_DIR$/src/com/chestertonic/rain/level/RandomLevel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chestertonic/rain/level/tile/Tile.java" afterPath="$PROJECT_DIR$/src/com/chestertonic/rain/level/tile/Tile.java" />
     </list>
-    <list id="3292dd57-5628-43ec-a204-c714d4fdb0d5" name="" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chestertonic/rain/graphics/Screen.java" afterPath="$PROJECT_DIR$/src/com/chestertonic/rain/graphics/Screen.java" />
-    </list>
+    <list id="3292dd57-5628-43ec-a204-c714d4fdb0d5" name="" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <file path="$PROJECT_DIR$/src/com/chestertonic/rain/graphics/Screen.java" ignored="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +55,7 @@
       <file leaf-file-name="Sprite.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/chestertonic/rain/graphics/Sprite.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2088">
+            <state relative-caret-position="-1368">
               <caret line="185" column="39" selection-start-line="185" selection-start-column="39" selection-end-line="185" selection-end-column="39" />
               <folding />
             </state>
@@ -1535,7 +1466,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/chestertonic/rain/graphics/Sprite.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2088">
+        <state relative-caret-position="-1368">
           <caret line="185" column="39" selection-start-line="185" selection-start-column="39" selection-end-line="185" selection-end-column="39" />
           <folding />
         </state>
