@@ -1,7 +1,10 @@
 package com.chestertonic.rain.entity.projectile;
 
+import com.chestertonic.rain.entity.Spawn;
+import com.chestertonic.rain.entity.particle.Particle;
 import com.chestertonic.rain.graphics.Screen;
 import com.chestertonic.rain.graphics.Sprite;
+import com.chestertonic.rain.level.PointTile;
 
 /**
  * Created by Chester on 11/12/2016.
@@ -29,6 +32,7 @@ public class WizardProjectile extends Projectile {
     @Override
     protected void move() {
         if (collision(nx, ny) || distance() > range) {
+            Spawn spawn = new Spawn((int) x, (int) y, Spawn.Type.PARTICLE, 50, level);
             remove();
         } else {
             x += nx;

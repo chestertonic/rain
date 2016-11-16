@@ -1,7 +1,9 @@
 package com.chestertonic.rain;
 
+import com.chestertonic.rain.entity.Spawn;
 import com.chestertonic.rain.entity.mob.Player;
 import com.chestertonic.rain.graphics.Screen;
+import com.chestertonic.rain.graphics.Sprite;
 import com.chestertonic.rain.input.KeyInput;
 import com.chestertonic.rain.input.MouseInput;
 import com.chestertonic.rain.level.Level;
@@ -12,6 +14,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.util.Random;
 
 import javax.swing.*;
 
@@ -55,6 +58,7 @@ public class Game extends Canvas implements Runnable {
         level = new SpawnLevel("/levels/spawn.png");
         PointTile playerSpawn = new PointTile(24, 51);
         level.setPlayer(new Player(playerSpawn.getX(), playerSpawn.getY(), keyInput));
+
 
     }
 
@@ -127,6 +131,15 @@ public class Game extends Canvas implements Runnable {
         screen.clear();  // clears previous screen image
 
         level.render(screen);
+        /*Sprite sprite = new Sprite(2, 2, 0xffffff);
+        sprite.setFixed(false);
+        Random random = new Random();
+        for (int i = 0; i < 100; i++) {
+            int x = random.nextInt(20);
+            int y = random.nextInt(20);
+            screen.render(width - 60 + x, 50 + y, sprite);
+        }*/
+
 
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
         /*for (int i = 0; i < pixels.length; i++) {

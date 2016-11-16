@@ -9,6 +9,10 @@ package com.chestertonic.rain.graphics;
  */
 public class Sprite {
 
+    public enum Flip {
+        NONE, VERTICAL, HORIZONTAL, BOTH
+    }
+
     /**
      * Width of {@code Sprite}.
      */
@@ -93,7 +97,8 @@ public class Sprite {
     public static Sprite spawn_water_floor = new Sprite(16, 2, 1, SpriteSheet.spawn_tiles);
 
     // Void Sprite
-    public static Sprite voidSprite = new Sprite(16, 0x6280ff);
+    //public static Sprite voidSprite = new Sprite(16, 0x6280ff);
+    public static Sprite voidSprite = new Sprite(16, 0xff00ff);
 
     // Player Sprite 32x32 grabs 5th 32x32 sprite down == 10th 16x16 sprite down
     public static Sprite player_back0 = new Sprite(32, 2, 5, SpriteSheet.tiles);
@@ -108,6 +113,9 @@ public class Sprite {
 
     // Projectiles
     public static Sprite projectile_wizard = new Sprite(16, 0, 0, SpriteSheet.projectile_wizard);
+
+    // Particles
+    public static Sprite particles_normal = new Sprite(2, 0xaaffaa);
 
     /**
      * Creates a new instance of {@code Sprite} with equal x/y dimensions.
@@ -125,6 +133,7 @@ public class Sprite {
         this.y = y * HEIGHT;
         this.sheet = sheet;
         flip = 0;
+        fixed = false;
         load();
     }
 
@@ -173,7 +182,7 @@ public class Sprite {
      */
     public Sprite(int width, int height, int color) {
         WIDTH = width;
-        HEIGHT = width;
+        HEIGHT = height;
         pixels = new int[WIDTH * HEIGHT];
         flip = 0;
         fixed = false;

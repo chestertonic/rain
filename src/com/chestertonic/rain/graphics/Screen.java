@@ -35,7 +35,7 @@ public class Screen {
 
 
     public void render(int xp, int yp, Sprite sprite) {
-        if (sprite.isFixed()) {
+        if (!sprite.isFixed()) {
             xp -= xOffset;
             yp -= yOffset;
         }

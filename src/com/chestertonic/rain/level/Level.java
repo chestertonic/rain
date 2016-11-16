@@ -1,7 +1,10 @@
 package com.chestertonic.rain.level;
 
 import com.chestertonic.rain.entity.Entity;
+import com.chestertonic.rain.entity.Spawn;
 import com.chestertonic.rain.entity.mob.Player;
+import com.chestertonic.rain.entity.particle.Particle;
+import com.chestertonic.rain.entity.projectile.Projectile;
 import com.chestertonic.rain.graphics.Screen;
 import com.chestertonic.rain.level.tile.Tile;
 
@@ -20,12 +23,14 @@ public class Level {
     int width, height;
     int[] tiles;
 
-    /* todo think about placing player inside List<Entity> entities. Figure out an ordering system for rendering.
-    *  Also an easy way to remove specific entities. i.e., using a HashMap would allow easy removal but it will not
-    *  allow easy ordering of entities to be rendered.
+    /* todo think about placing player inside List<Entity> projectiles. Figure out an ordering system for rendering.
+    *  Also an easy way to remove specific projectiles. i.e., using a HashMap would allow easy removal but it will not
+    *  allow easy ordering of projectiles to be rendered.
     */
     private Player player;
     private List<Entity> entities = new ArrayList<>();
+    private List<Projectile> projectiles = new ArrayList<>();
+    private List<Particle> particles = new ArrayList<>();
 
     Level(int width, int height) {
         this.width = width;
@@ -57,13 +62,15 @@ public class Level {
 
     public void update(int windowWidth, int windowHeight) {
         // stream seamed just as fast as for loop
-        /*entities.stream().filter(Entity::isRemoved).forEach(Entity::remove);*/
-        for (int i = 0; i < entities.size(); i++) {
-            Entity p = entities.get(i);
+        /*projectiles.stream().filter(Entity::isRemoved).forEach(Entity::remove);*/
+        for (int i = 0; i < projectiles.size(); i++) {
+            Entity p = projectiles.get(i);
             if (p.isRemoved())
-                entities.remove(i);
+                projectiles.remove(i);
         }
         player.update(windowWidth, windowHeight);
+        projectiles.forEach(Entity::update);
+        particles.forEach(Particle::update);
         entities.forEach(Entity::update);
     }
 
@@ -82,16 +89,20 @@ public class Level {
             }
         }
         if (player.getDir() == 0 || player.getDir() == 3) {
+            projectiles.forEach(entity -> entity.render(screen));
+            particles.forEach(particle -> particle.render(screen));
             entities.forEach(entity -> entity.render(screen));
             player.render(screen);
         } else {
             player.render(screen);
+            projectiles.forEach(entity -> entity.render(screen));
+            particles.forEach(particle -> particle.render(screen));
             entities.forEach(entity -> entity.render(screen));
         }
 
 
-        /*for (int i = 0; i < entities.size(); i++) {
-            entities.get(i).render(screen);
+        /*for (int i = 0; i < projectiles.size(); i++) {
+            projectiles.get(i).render(screen);
         }*/
     }
 
@@ -102,7 +113,12 @@ public class Level {
 
     public void add(Entity entity) {
         entity.setLevel(this);
-        entities.add(entity);
+        if (entity instanceof Particle) {
+            particles.add((Particle) entity);
+        } else if (entity instanceof Projectile) {
+            projectiles.add((Projectile) entity);
+        } else
+            entities.add(entity);
     }
 
     /*public boolean collision(int x, int y, int xa, int ya, int size) {

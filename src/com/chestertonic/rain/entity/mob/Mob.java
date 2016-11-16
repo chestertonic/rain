@@ -1,6 +1,7 @@
 package com.chestertonic.rain.entity.mob;
 
 import com.chestertonic.rain.entity.Entity;
+import com.chestertonic.rain.entity.particle.Particle;
 import com.chestertonic.rain.entity.projectile.Projectile;
 import com.chestertonic.rain.entity.projectile.WizardProjectile;
 import com.chestertonic.rain.graphics.Screen;
